@@ -75,6 +75,9 @@ RELATED WORKS								     *
 - Syntax match (vimscript #5376) provides various (color-based) shortcut
   commands for :syntax match, and saves and restores those definitions, for
   text and log files.
+- SelX (vimscript #5875) provides multiple multi-colored highlights per-tab
+  (that can be stored in a session), mappings that mirror the built-in search
+  commands, as a special feature automatically displays a Highlight Usage Map.
 
 ==============================================================================
 USAGE								  *mark-usage*
@@ -872,7 +875,7 @@ Last version published by Yuheng Xie on vim.org.
 Initial version published by Yuheng Xie on vim.org.
 
 ==============================================================================
-Copyright: (C) 2008-2019 Ingo Karkat
+Copyright: (C) 2008-2020 Ingo Karkat
            (C) 2005-2008 Yuheng Xie
 The VIM LICENSE applies to this plugin; see |copyright|.
 

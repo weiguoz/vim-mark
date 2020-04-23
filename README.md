@@ -65,6 +65,9 @@ plugin offers the following advantages over the original:
 - Syntax match ([vimscript #5376](http://www.vim.org/scripts/script.php?script_id=5376)) provides various (color-based) shortcut
   commands for :syntax match, and saves and restores those definitions, for
   text and log files.
+- SelX ([vimscript #5875](http://www.vim.org/scripts/script.php?script_id=5875)) provides multiple multi-colored highlights per-tab
+  (that can be stored in a session), mappings that mirror the built-in search
+  commands, as a special feature automatically displays a Highlight Usage Map.
 
 USAGE
 ------------------------------------------------------------------------------
@@ -564,6 +567,9 @@ HISTORY
 ##### 3.1.1   RELEASEME
 - Compatibility: After Vim 8.1.1241, a :range outside the number of buffers
   (e.g. :99Mark[Name]) causes an error.
+- ENH: Add (GUI-only) additional palettes "soft" and "softer" that are
+  variants of "extended" with less saturation / higher brightness of
+  background colors (for when the default colors are too distracting).
 
 ##### 3.1.0   23-Mar-2019
 - ENH: Handle magicness atoms (\\V, \\m) in regexps entered via &lt;Leader&gt;r or
@@ -881,7 +887,7 @@ __PLEASE UPDATE THE
 - Initial version published by Yuheng Xie on vim.org.
 
 ------------------------------------------------------------------------------
-Copyright: (C) 2008-2019 Ingo Karkat -
+Copyright: (C) 2008-2020 Ingo Karkat -
            (C) 2005-2008 Yuheng Xie -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 

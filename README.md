@@ -320,7 +320,7 @@ To uninstall, use the :RmVimball command.
 ### DEPENDENCIES
 
 - Requires Vim 7.1 with matchadd(), or Vim 7.2 or higher.
-- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.036 or
+- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.042 or
   higher.
 
 CONFIGURATION
@@ -570,6 +570,11 @@ HISTORY
 - ENH: Add (GUI-only) additional palettes "soft" and "softer" that are
   variants of "extended" with less saturation / higher brightness of
   background colors (for when the default colors are too distracting).
+- ENH: Marks that cover multiple lines (created through a visual selection or
+  :Mark /{pattern}/) now also can be jumped to when the cursor is not on the
+  mark's first line.
+
+__You need to update to ingo-library ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)) version 1.042!__
 
 ##### 3.1.0   23-Mar-2019
 - ENH: Handle magicness atoms (\\V, \\m) in regexps entered via &lt;Leader&gt;r or

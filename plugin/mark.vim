@@ -1,7 +1,7 @@
 " Script Name: mark.vim
 " Description: Highlight several words in different colors simultaneously.
 "
-" Copyright:   (C) 2008-2019 Ingo Karkat
+" Copyright:   (C) 2008-2020 Ingo Karkat
 "              (C) 2005-2008 Yuheng Xie
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
@@ -9,15 +9,11 @@
 " Orig Author: Yuheng Xie <elephant@linux.net.cn>
 " Contributors:Luc Hermitte, Ingo Karkat
 "
-" Dependencies:
+" DEPENDENCIES:
 "	- Requires Vim 7.1 with "matchadd()", or Vim 7.2 or higher.
-"	- mark.vim autoload script
-"	- mark/palettes.vim autoload script for additional palettes
-"	- mark/cascade.vim autoload script for cascading search
-"	- ingo/err.vim autoload script
-"	- ingo/msg.vim autoload script
+"	- ingo-library.vim plugin
 "
-" Version:     3.0.0
+" Version:     3.1.1
 
 " Avoid installing twice or when in unsupported Vim version.
 if exists('g:loaded_mark') || (v:version == 701 && ! exists('*matchadd')) || (v:version < 701)

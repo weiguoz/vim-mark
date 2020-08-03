@@ -9,7 +9,7 @@
 "
 " DEPENDENCIES:
 "   - ingo-library.vim plugin
-"   - SearchSpecial.vim plugin
+"   - SearchSpecial.vim plugin (optional)
 "
 " Version:     3.1.1
 

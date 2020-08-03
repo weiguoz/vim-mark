@@ -32,6 +32,10 @@ plugin offers the following advantages over the original:
   start command \*, extends it to visual mode (like Mark) and has auto-search
   functionality which instantly highlights the word under the cursor when
   typing or moving around, like in many IDEs.
+- MarkMarkup.vim ([vimscript #5777](http://www.vim.org/scripts/script.php?script_id=5777)) extends mark.vim with rendering the
+  highlightings as markup directly inside the text: as HTML &lt;span&gt; tags that
+  reproduce the mark's colors, or as appended numbers or symbols and a legend
+  to look up the mark names. Any markup-based export format can be defined.
 
 ### RELATED WORKS
 
@@ -61,6 +65,9 @@ plugin offers the following advantages over the original:
 - Syntax match ([vimscript #5376](http://www.vim.org/scripts/script.php?script_id=5376)) provides various (color-based) shortcut
   commands for :syntax match, and saves and restores those definitions, for
   text and log files.
+- SelX ([vimscript #5875](http://www.vim.org/scripts/script.php?script_id=5875)) provides multiple multi-colored highlights per-tab
+  (that can be stored in a session), mappings that mirror the built-in search
+  commands, as a special feature automatically displays a Highlight Usage Map.
 
 USAGE
 ------------------------------------------------------------------------------
@@ -185,7 +192,9 @@ USAGE
                             belonging to highlight group 1..9.
                             Note that these commands only work in GVIM or if your
                             terminal sends different key codes; sadly, most still
-                            don't. The "Num Lock" indicator of your keyboard has
+                            don't.
+                            https://unix.stackexchange.com/questions/552297/make-gnome-terminal-send-correct-numeric-keypad-keycodes-to-vim
+                            The "Num Lock" indicator of your keyboard has
                             to be ON; otherwise, the keypad is used for cursor
                             movement. If the keypad doesn't work for you, you can
                             still remap these mappings to alternatives; see below.
@@ -311,7 +320,7 @@ To uninstall, use the :RmVimball command.
 ### DEPENDENCIES
 
 - Requires Vim 7.1 with matchadd(), or Vim 7.2 or higher.
-- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.036 or
+- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.042 or
   higher.
 
 CONFIGURATION
@@ -554,6 +563,18 @@ https://github.com/inkarkat/vim-mark/issues or email (address below).
 
 HISTORY
 ------------------------------------------------------------------------------
+
+##### 3.1.1   03-Aug-2020
+- Compatibility: After Vim 8.1.1241, a :range outside the number of buffers
+  (e.g. :99Mark[Name]) causes an error.
+- ENH: Add (GUI-only) additional palettes "soft" and "softer" that are
+  variants of "extended" with less saturation / higher brightness of
+  background colors (for when the default colors are too distracting).
+- ENH: Marks that cover multiple lines (created through a visual selection or
+  :Mark /{pattern}/) now also can be jumped to when the cursor is not on the
+  mark's first line.
+
+__You need to update to ingo-library ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)) version 1.042!__
 
 ##### 3.1.0   23-Mar-2019
 - ENH: Handle magicness atoms (\\V, \\m) in regexps entered via &lt;Leader&gt;r or
@@ -871,7 +892,7 @@ __PLEASE UPDATE THE
 - Initial version published by Yuheng Xie on vim.org.
 
 ------------------------------------------------------------------------------
-Copyright: (C) 2008-2019 Ingo Karkat -
+Copyright: (C) 2008-2020 Ingo Karkat -
            (C) 2005-2008 Yuheng Xie -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 

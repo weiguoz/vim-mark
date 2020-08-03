@@ -1,7 +1,7 @@
 " Script Name: mark.vim
 " Description: Highlight several words in different colors simultaneously.
 "
-" Copyright:   (C) 2008-2019 Ingo Karkat
+" Copyright:   (C) 2008-2020 Ingo Karkat
 "              (C) 2005-2008 Yuheng Xie
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
@@ -9,15 +9,11 @@
 " Orig Author: Yuheng Xie <elephant@linux.net.cn>
 " Contributors:Luc Hermitte, Ingo Karkat
 "
-" Dependencies:
+" DEPENDENCIES:
 "	- Requires Vim 7.1 with "matchadd()", or Vim 7.2 or higher.
-"	- mark.vim autoload script
-"	- mark/palettes.vim autoload script for additional palettes
-"	- mark/cascade.vim autoload script for cascading search
-"	- ingo/err.vim autoload script
-"	- ingo/msg.vim autoload script
+"	- ingo-library.vim plugin
 "
-" Version:     3.0.0
+" Version:     3.1.1
 
 " Avoid installing twice or when in unsupported Vim version.
 if exists('g:loaded_mark') || (v:version == 701 && ! exists('*matchadd')) || (v:version < 701)
@@ -60,6 +56,12 @@ if ! exists('g:mwPalettes')
 	\	'extended': function('mark#palettes#Extended'),
 	\	'maximum': function('mark#palettes#Maximum')
 	\}
+	if has('gui_running')
+		call extend(g:mwPalettes, {
+		\	'soft': function('mark#palettes#Soft'),
+		\	'softer': function('mark#palettes#Softer'),
+		\})
+	endif
 endif
 
 if ! exists('g:mwDirectGroupJumpMappingNum')
@@ -157,7 +159,13 @@ endif
 
 "- commands -------------------------------------------------------------------
 
-command! -bang -range=0 -nargs=? -complete=customlist,mark#Complete Mark if <bang>0 | silent call mark#DoMark(<count>, '') | endif | if ! mark#SetMark(<count>, <f-args>)[0] | echoerr ingo#err#Get() | endif
+let s:hasOtherArgumentAddressing = v:version == 801 && has('patch560') || v:version > 801
+
+if s:hasOtherArgumentAddressing
+	command! -bang -range=0 -addr=other -nargs=? -complete=customlist,mark#Complete Mark if <bang>0 | silent call mark#DoMark(<count>, '') | endif | if ! mark#SetMark(<count>, <f-args>)[0] | echoerr ingo#err#Get() | endif
+else
+	command! -bang -range=0             -nargs=? -complete=customlist,mark#Complete Mark if <bang>0 | silent call mark#DoMark(<count>, '') | endif | if ! mark#SetMark(<count>, <f-args>)[0] | echoerr ingo#err#Get() | endif
+endif
 command! -bar MarkClear call mark#ClearAll()
 command! -bar Marks call mark#List()
 
@@ -185,7 +193,13 @@ function! s:MarkPaletteComplete( ArgLead, CmdLine, CursorPos )
 	return sort(filter(keys(g:mwPalettes), 'v:val =~ ''\V\^'' . escape(a:ArgLead, "\\")'))
 endfunction
 command! -bar -nargs=1 -complete=customlist,<SID>MarkPaletteComplete MarkPalette call <SID>SetPalette(<q-args>)
-command! -bar -bang -range=0 -nargs=? MarkName if ! mark#SetName(<bang>0, <count>, <q-args>) | echoerr ingo#err#Get() | endif
+if s:hasOtherArgumentAddressing
+	command! -bar -bang -range=0 -addr=other -nargs=? MarkName if ! mark#SetName(<bang>0, <count>, <q-args>) | echoerr ingo#err#Get() | endif
+else
+	command! -bar -bang -range=0             -nargs=? MarkName if ! mark#SetName(<bang>0, <count>, <q-args>) | echoerr ingo#err#Get() | endif
+endif
+
+unlet s:hasOtherArgumentAddressing
 
 
 

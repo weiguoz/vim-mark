@@ -1,22 +1,17 @@
 " Script Name: mark.vim
 " Description: Highlight several words in different colors simultaneously.
 "
-" Copyright:   (C) 2008-2019 Ingo Karkat
+" Copyright:   (C) 2008-2020 Ingo Karkat
 "              (C) 2005-2008 Yuheng Xie
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:  Ingo Karkat <ingo@karkat.de>
 "
 " DEPENDENCIES:
-"   - ingo/cmdargs/pattern.vim autoload script
-"   - ingo/err.vim autoload script
-"   - ingo/msg.vim autoload script
-"   - ingo/regexp.vim autoload script
-"   - ingo/regexp/magic.vim autoload script
-"   - ingo/regexp/split.vim autoload script
-"   - SearchSpecial.vim autoload script (optional, for improved search messages).
+"   - ingo-library.vim plugin
+"   - SearchSpecial.vim plugin (optional)
 "
-" Version:     3.1.0
+" Version:     3.1.1
 
 "- functions ------------------------------------------------------------------
 
@@ -516,11 +511,7 @@ endfunction
 
 " Return [mark text, mark start position, mark index] of the mark under the
 " cursor (or ['', [], -1] if there is no mark).
-" The mark can include the trailing newline character that concludes the line,
-" but marks that span multiple lines are not supported.
 function! mark#CurrentMark()
-	let line = getline('.') . "\n"
-
 	" Highlighting groups with higher numbers take precedence over lower numbers,
 	" and therefore its marks appear "above" other marks. To retrieve the visible
 	" mark in case of overlapping marks, we need to check from highest to lowest
@@ -528,20 +519,12 @@ function! mark#CurrentMark()
 	let i = s:markNum - 1
 	while i >= 0
 		if ! empty(s:pattern[i])
-			let matchPattern = (s:IsIgnoreCase(s:pattern[i]) ? '\c' : '\C') . s:pattern[i]
-			" Note: col() is 1-based, all other indexes zero-based!
-			let start = 0
-			while start >= 0 && start < strlen(line) && start < col('.')
-				let b = match(line, matchPattern, start)
-				let e = matchend(line, matchPattern, start)
-				if b < col('.') && col('.') <= e
-					return [s:pattern[i], [line('.'), (b + 1)], i]
-				endif
-				if b == e
-					break
-				endif
-				let start = e
-			endwhile
+			let l:matchPattern = (s:IsIgnoreCase(s:pattern[i]) ? '\c' : '\C') . s:pattern[i]
+
+			let [l:startPosition, l:endPosition] = ingo#area#frompattern#GetCurrent(l:matchPattern, {'firstLnum': 1, 'lastLnum': line('$')})
+			if l:startPosition != [0, 0]
+				return [s:pattern[i], l:startPosition, i]
+			endif
 		endif
 		let i -= 1
 	endwhile

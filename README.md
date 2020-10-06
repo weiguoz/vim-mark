@@ -68,6 +68,9 @@ plugin offers the following advantages over the original:
 - SelX ([vimscript #5875](http://www.vim.org/scripts/script.php?script_id=5875)) provides multiple multi-colored highlights per-tab
   (that can be stored in a session), mappings that mirror the built-in search
   commands, as a special feature automatically displays a Highlight Usage Map.
+- hi ([vimscript #5887](http://www.vim.org/scripts/script.php?script_id=5887)) highlights words, sentences or regular expressions
+  using many configured colors, and can search; also offers separate windows
+  for filtering and configuration editing catered towards log analysis.
 
 USAGE
 ------------------------------------------------------------------------------

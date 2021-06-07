@@ -547,11 +547,12 @@ behavior:
 INTEGRATION
 ------------------------------------------------------------------------------
 
-The following functions offer (read-only) access to the number of available
-groups, number of defined marks and individual patterns:
-- mark#GetGroupNum()
-- mark#GetCount()
-- mark#GetPattern([{index}])
+The following functions offer (read-only) access to the script's internals:
+- mark#GetGroupNum(): number of available groups
+- mark#GetCount(): number of defined marks
+- mark#GetPattern([{index}]): search regular expression for an individual mark
+- mark#GetMarkNumber({pattern}, {isLiteral}, {isConsiderAlternatives}): mark
+  number of a pattern / literal text
 
 LIMITATIONS
 ------------------------------------------------------------------------------
@@ -569,6 +570,9 @@ https://github.com/inkarkat/vim-mark/issues or email (address below).
 
 HISTORY
 ------------------------------------------------------------------------------
+
+##### 3.2.0   RELEASEME
+- Add mark#GetMarkNumber(), based on feedback by Snorch in #36.
 
 ##### 3.1.1   03-Aug-2020
 - Compatibility: After Vim 8.1.1241, a :range outside the number of buffers
@@ -898,7 +902,7 @@ __PLEASE UPDATE THE
 - Initial version published by Yuheng Xie on vim.org.
 
 ------------------------------------------------------------------------------
-Copyright: (C) 2008-2020 Ingo Karkat -
+Copyright: (C) 2008-2021 Ingo Karkat -
            (C) 2005-2008 Yuheng Xie -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 

@@ -220,16 +220,7 @@ function! mark#UpdateMark( ... )
 endfunction
 " Update matches in all windows.
 function! mark#UpdateScope( ... )
-	" By entering a window, its height is potentially increased from 0 to 1 (the
-	" minimum for the current window). To avoid any modification, save the window
-	" sizes and restore them after visiting all windows.
-	let l:originalWindowLayout = winrestcmd()
-		let l:originalWinNr = winnr()
-		let l:previousWinNr = winnr('#') ? winnr('#') : 1
-			noautocmd keepjumps windo call call('mark#UpdateMark', a:000)
-		noautocmd execute l:previousWinNr . 'wincmd w'
-		noautocmd execute l:originalWinNr . 'wincmd w'
-	silent! execute l:originalWindowLayout
+	call call('ingo#window#iterate#All', [function('mark#UpdateMark')] + a:000)
 endfunction
 
 function! s:MarkEnable( enable, ...)

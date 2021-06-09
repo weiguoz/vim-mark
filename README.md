@@ -326,7 +326,7 @@ To uninstall, use the :RmVimball command.
 ### DEPENDENCIES
 
 - Requires Vim 7.1 with matchadd(), or Vim 7.2 or higher.
-- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.042 or
+- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.043 or
   higher.
 
 CONFIGURATION
@@ -573,6 +573,11 @@ HISTORY
 
 ##### 3.2.0   RELEASEME
 - Add mark#GetMarkNumber(), based on feedback by Snorch in #36.
+- Mark updates across windows now use win\_execute() (since Vim 8.1.1418)
+  instead of :windo. This hopefully addresses the changes in window sizes that
+  have been reported (e.g. in #34).
+
+__You need to update to ingo-library ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)) version 1.043!__
 
 ##### 3.1.1   03-Aug-2020
 - Compatibility: After Vim 8.1.1241, a :range outside the number of buffers

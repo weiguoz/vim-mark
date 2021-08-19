@@ -500,6 +500,11 @@ fallback to Vim's original \* command, use:
     nmap * <Plug>MarkSearchOrCurNext
     nmap # <Plug>MarkSearchOrCurPrev
 
+Or for search for the next occurrence of any mark with fallback to \*:
+
+    nmap * <Plug>MarkSearchOrAnyNext
+    nmap # <Plug>MarkSearchOrAnyPrev
+
 The search mappings (\*, #, etc.) interpret [count] as the number of
 occurrences to jump over. If you don't want to use the separate
 mark-keypad-searching mappings, and rather want [count] select the highlight

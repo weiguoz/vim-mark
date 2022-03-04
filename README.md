@@ -584,6 +584,9 @@ https://github.com/inkarkat/vim-mark/issues or email (address below).
 HISTORY
 ------------------------------------------------------------------------------
 
+##### 3.2.1   RELEASEME
+- Expose mark#mark#AnyMarkPattern().
+
 ##### 3.2.0   15-Feb-2022
 - Add mark#GetMarkNumber(), based on feedback by Snorch in #36.
 - Mark updates across windows now use win\_execute() (since Vim 8.1.1418)

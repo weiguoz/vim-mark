@@ -586,6 +586,8 @@ HISTORY
 
 ##### 3.2.1   RELEASEME
 - Expose mark#mark#AnyMarkPattern().
+- Robustness: Place the ColorScheme initialization also in the
+  MarkInitialization autocommand group.
 
 ##### 3.2.0   15-Feb-2022
 - Add mark#GetMarkNumber(), based on feedback by Snorch in #36.
@@ -926,7 +928,7 @@ __PLEASE UPDATE THE
 - Initial version published by Yuheng Xie on vim.org.
 
 ------------------------------------------------------------------------------
-Copyright: (C) 2008-2022 Ingo Karkat -
+Copyright: (C) 2008-2023 Ingo Karkat -
            (C) 2005-2008 Yuheng Xie -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 

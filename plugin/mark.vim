@@ -1,7 +1,7 @@
 " Script Name: mark.vim
 " Description: Highlight several words in different colors simultaneously.
 "
-" Copyright:   (C) 2008-2021 Ingo Karkat
+" Copyright:   (C) 2008-2023 Ingo Karkat
 "              (C) 2005-2008 Yuheng Xie
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
@@ -13,7 +13,7 @@
 "	- Requires Vim 7.1 with "matchadd()", or Vim 7.2 or higher.
 "	- ingo-library.vim plugin
 "
-" Version:     3.1.1
+" Version:     3.2.1
 
 " Avoid installing twice or when in unsupported Vim version.
 if exists('g:loaded_mark') || (v:version == 701 && ! exists('*matchadd')) || (v:version < 701)
@@ -114,7 +114,10 @@ function! s:DefineHighlightings( palette, isOverride )
 	return l:highlightingNum
 endfunction
 call s:DefineHighlightings(s:GetPalette(), 0)
-autocmd ColorScheme * call <SID>DefineHighlightings(<SID>GetPalette(), 0)
+augroup MarkInitialization
+	autocmd!
+	autocmd ColorScheme * call <SID>DefineHighlightings(<SID>GetPalette(), 0)
+augroup END
 
 " Default highlighting for the special search type.
 " You can override this by defining / linking the 'SearchSpecialSearchType'
@@ -147,11 +150,10 @@ if g:mwAutoLoadMarks
 	endfunction
 
 	augroup MarkInitialization
-		autocmd!
 		" Note: Avoid triggering the autoload unless there actually are persistent
 		" marks. For that, we need to check that g:MARK_MARKS doesn't contain the
 		" empty list representation, and also :execute the :call.
-		autocmd VimEnter * call <SID>AutoLoadMarks()
+		autocmd! VimEnter * call <SID>AutoLoadMarks()
 	augroup END
 endif
 

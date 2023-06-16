@@ -61,7 +61,8 @@ function! s:IsIgnoreCase( expr )
 endfunction
 " Mark the current word, like the built-in star command.
 " If the cursor is on an existing mark, remove it.
-function! mark#MarkCurrentWord( groupNum )
+function! mark#MarkCurrentWord( groupNum, ... )
+	let l:markWholeWordOnly = (a:0 >= 1 ? a:1 : 1)
 	let l:regexp = (a:groupNum == 0 ? mark#CurrentMark()[0] : '')
 	if empty(l:regexp)
 		let l:cword = expand('<cword>')
@@ -69,12 +70,15 @@ function! mark#MarkCurrentWord( groupNum )
 			let l:regexp = s:EscapeText(l:cword)
 			" The star command only creates a \<whole word\> search pattern if the
 			" <cword> actually only consists of keyword characters.
-			if l:cword =~# '^\k\+$'
+			if l:cword =~# '^\k\+$' && l:markWholeWordOnly == 1
 				let l:regexp = '\<' . l:regexp . '\>'
 			endif
 		endif
 	endif
 	return (empty(l:regexp) ? 0 : mark#DoMark(a:groupNum, l:regexp)[0])
+endfunction
+function! mark#MarkCurrentWordWithoutAnchors( groupNum )
+	return mark#MarkCurrentWord( a:groupNum, 0 )
 endfunction
 
 function! mark#GetVisualSelection()

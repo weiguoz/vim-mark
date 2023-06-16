@@ -267,7 +267,7 @@ if !hasmapto('<Plug>MarkSet', 'n')
 	nmap <unique> <Leader>m <Plug>MarkSet
 endif
 if !hasmapto('<Plug>MarkWithoutAnchorsSet', 'n')
-	nmap <unique> <Leader>*m <Plug>MarkWithoutAnchorsSet
+	nmap <unique> <Leader>gm <Plug>MarkWithoutAnchorsSet
 endif
 if !hasmapto('<Plug>MarkSet', 'x')
 	xmap <unique> <Leader>m <Plug>MarkSet

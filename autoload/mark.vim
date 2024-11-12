@@ -1,7 +1,7 @@
 " Script Name: mark.vim
 " Description: Highlight several words in different colors simultaneously.
 "
-" Copyright:   (C) 2008-2022 Ingo Karkat
+" Copyright:   (C) 2008-2024 Ingo Karkat
 "              (C) 2005-2008 Yuheng Xie
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
@@ -12,6 +12,14 @@
 "   - SearchSpecial.vim plugin (optional)
 "
 " Version:     3.2.1
+
+try
+	call ingo#version#Has('1.046')
+catch /^ingo-library:/
+	echoerr v:exception
+catch /^Vim\%((\a\+)\)\=:/
+	echoerr printf('The ingo-library dependency is missing; see :help %s-dependencies', expand('<sfile>:t:r'))
+endtry
 
 "- functions ------------------------------------------------------------------
 

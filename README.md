@@ -474,8 +474,20 @@ turn off the creation of the default mappings by defining:
 
 This saves you from mapping dummy keys to all unwanted mapping targets.
 
-You can use different mappings by mapping to the &lt;Plug&gt;Mark... mappings (use
-":map &lt;Plug&gt;Mark" to list them all) before this plugin is sourced.
+If you want to use different mappings, map your keys to the &lt;Plug&gt;Mark...
+mapping targets _before_ sourcing the script (e.g. in your vimrc):
+
+    nmap <Leader>m <Plug>MarkSet
+    xmap <Leader>m <Plug>MarkSet
+    nmap <Leader>r <Plug>MarkRegex
+    xmap <Leader>r <Plug>MarkRegex
+    nmap <Leader>n <Plug>MarkClear
+    nmap <Leader>* <Plug>MarkSearchCurrentNext
+    nmap <Leader># <Plug>MarkSearchCurrentPrev
+    nmap <Leader>/ <Plug>MarkSearchAnyNext
+    nmap <Leader>? <Plug>MarkSearchAnyPrev
+    nmap * <Plug>MarkSearchNext
+    nmap # <Plug>MarkSearchPrev
 
 There are no default mappings for toggling all marks and for the :MarkClear
 command, but you can define some yourself:

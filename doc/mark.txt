@@ -471,10 +471,21 @@ If you want no or only a few of the available mappings, you can completely
 turn off the creation of the default mappings by defining: >
     :let g:mw_no_mappings = 1
 This saves you from mapping dummy keys to all unwanted mapping targets.
-							       *mark-mappings*
-You can use different mappings by mapping to the <Plug>Mark... mappings (use
-":map <Plug>Mark" to list them all) before this plugin is sourced.
-
+						  *mark-mappings* *mark-remap*
+If you want to use different mappings, map your keys to the <Plug>Mark...
+mapping targets _before_ sourcing the script (e.g. in your |vimrc|): >
+    nmap <Leader>m <Plug>MarkSet
+    xmap <Leader>m <Plug>MarkSet
+    nmap <Leader>r <Plug>MarkRegex
+    xmap <Leader>r <Plug>MarkRegex
+    nmap <Leader>n <Plug>MarkClear
+    nmap <Leader>* <Plug>MarkSearchCurrentNext
+    nmap <Leader># <Plug>MarkSearchCurrentPrev
+    nmap <Leader>/ <Plug>MarkSearchAnyNext
+    nmap <Leader>? <Plug>MarkSearchAnyPrev
+    nmap * <Plug>MarkSearchNext
+    nmap # <Plug>MarkSearchPrev
+<
 There are no default mappings for toggling all marks and for the |:MarkClear|
 command, but you can define some yourself: >
     nmap <Leader>M <Plug>MarkToggle

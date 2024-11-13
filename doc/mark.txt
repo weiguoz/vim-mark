@@ -301,7 +301,7 @@ highlight group via [N].
 :Marks			List all mark highlight groups and the search patterns
 			defined for them.
 			The group that will be used for the next |:Mark| or
-			|<Leader>m| command (with [N]) is shown with a ">".
+			|<Leader>m| command (without {N}) is shown with a ">".
 			The last mark used for a search (via <Leader>*) is
 			shown with a "/".
 

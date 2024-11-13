@@ -84,9 +84,12 @@ USAGE
                             command. The next free highlight group is used.
                             If already on a mark: Clear the mark, like
                             <Leader>n.
+    <Leader>gm              Variant of <Leader>m that marks the word under the
+                            cursor, but doesn't put "\<" and "\>" around the word,
+                            similar to the gstar command.
     {Visual}<Leader>m       Mark or unmark the visual selection.
     {N}<Leader>m            With {N}, mark the word under the cursor with the
-                            named highlight group {N}. When that group is not
+    {N}<Leader>gm           named highlight group {N}. When that group is not
                             empty, the word is added as an alternative match, so
                             you can highlight multiple words with the same color.
                             When the word is already contained in the list of
@@ -285,7 +288,7 @@ USAGE
     :Marks                  List all mark highlight groups and the search patterns
                             defined for them.
                             The group that will be used for the next :Mark or
-                            <Leader>m command (with [N]) is shown with a ">".
+                            <Leader>m command (without {N}) is shown with a ">".
                             The last mark used for a search (via <Leader>*) is
                             shown with a "/".
 
@@ -478,6 +481,7 @@ If you want to use different mappings, map your keys to the &lt;Plug&gt;Mark...
 mapping targets _before_ sourcing the script (e.g. in your vimrc):
 
     nmap <Leader>m <Plug>MarkSet
+    nmap <Leader>gm <Plug>MarkPartialWord
     xmap <Leader>m <Plug>MarkSet
     nmap <Leader>r <Plug>MarkRegex
     xmap <Leader>r <Plug>MarkRegex
@@ -596,11 +600,15 @@ https://github.com/inkarkat/vim-mark/issues or email (address below).
 HISTORY
 ------------------------------------------------------------------------------
 
-##### 3.2.1   RELEASEME
+##### 3.3.0   RELEASEME
 - Expose mark#mark#AnyMarkPattern().
 - Robustness: Place the ColorScheme initialization also in the
   MarkInitialization autocommand group.
 - Robustness: Add check for existence and compatible version of ingo-library.
+- ENH: Add &lt;Leader&gt;gm mapping for non-whole word matching like gstar.
+  Contributed by Carl Smith.
+
+__You need to update to ingo-library ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)) version 1.046!__
 
 ##### 3.2.0   15-Feb-2022
 - Add mark#GetMarkNumber(), based on feedback by Snorch in #36.

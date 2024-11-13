@@ -70,15 +70,12 @@ function! mark#MarkCurrentWord( groupNum, ... )
 			let l:regexp = s:EscapeText(l:cword)
 			" The star command only creates a \<whole word\> search pattern if the
 			" <cword> actually only consists of keyword characters.
-			if l:cword =~# '^\k\+$' && l:markWholeWordOnly == 1
+			if l:cword =~# '^\k\+$' && l:markWholeWordOnly
 				let l:regexp = '\<' . l:regexp . '\>'
 			endif
 		endif
 	endif
 	return (empty(l:regexp) ? 0 : mark#DoMark(a:groupNum, l:regexp)[0])
-endfunction
-function! mark#MarkCurrentWordWithoutAnchors( groupNum )
-	return mark#MarkCurrentWord( a:groupNum, 0 )
 endfunction
 
 function! mark#GetVisualSelection()

@@ -1,7 +1,7 @@
 " Script Name: mark.vim
 " Description: Highlight several words in different colors simultaneously.
 "
-" Copyright:   (C) 2008-2023 Ingo Karkat
+" Copyright:   (C) 2008-2024 Ingo Karkat
 "              (C) 2005-2008 Yuheng Xie
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
@@ -208,6 +208,7 @@ unlet s:hasOtherArgumentAddressing
 "- mappings -------------------------------------------------------------------
 
 nnoremap <silent> <Plug>MarkSet               :<C-u>if ! mark#MarkCurrentWord(v:count)<Bar>execute "normal! \<lt>C-\>\<lt>C-n>\<lt>Esc>"<Bar>endif<CR>
+nnoremap <silent> <Plug>MarkPartialWord       :<C-u>if ! mark#MarkCurrentWord(v:count, 0)<Bar>execute "normal! \<lt>C-\>\<lt>C-n>\<lt>Esc>"<Bar>endif<CR>
 vnoremap <silent> <Plug>MarkSet               :<C-u>if ! mark#DoMark(v:count, mark#GetVisualSelectionAsLiteralPattern())[0]<Bar>execute "normal! \<lt>C-\>\<lt>C-n>\<lt>Esc>"<Bar>endif<CR>
 vnoremap <silent> <Plug>MarkIWhiteSet         :<C-u>if ! mark#DoMark(v:count, mark#GetVisualSelectionAsLiteralWhitespaceIndifferentPattern())[0]<Bar>execute "normal! \<lt>C-\>\<lt>C-n>\<lt>Esc>"<Bar>endif<CR>
 nnoremap <silent> <Plug>MarkRegex             :<C-u>if ! mark#MarkRegex(v:count, '')<Bar>execute "normal! \<lt>C-\>\<lt>C-n>\<lt>Esc>"<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
@@ -264,6 +265,9 @@ endif
 
 if !hasmapto('<Plug>MarkSet', 'n')
 	nmap <unique> <Leader>m <Plug>MarkSet
+endif
+if !hasmapto('<Plug>MarkPartialWord', 'n')
+	nmap <unique> <Leader>gm <Plug>MarkPartialWord
 endif
 if !hasmapto('<Plug>MarkSet', 'x')
 	xmap <unique> <Leader>m <Plug>MarkSet

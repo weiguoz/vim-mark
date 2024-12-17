@@ -267,7 +267,7 @@ if !hasmapto('<Plug>MarkSet', 'n')
 	nmap <unique> <Leader>m <Plug>MarkSet
 endif
 if !hasmapto('<Plug>MarkPartialWord', 'n')
-	nmap <unique> <Leader>gm <Plug>MarkPartialWord
+	nmap <unique> <Leader>gw <Plug>MarkPartialWord
 endif
 if !hasmapto('<Plug>MarkSet', 'x')
 	xmap <unique> <Leader>m <Plug>MarkSet
